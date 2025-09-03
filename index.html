@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tienda de Accesorios Celulares</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+<h1>Tienda de Accesorios para Celulares</h1>
+<nav>
+  <div class="menu-toggle" id="menu-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <ul id="menu">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="https://wa.me/525615864343" target="_blank">Contacto</a></li>
+  </ul>
+</nav>
+</header>
+
+<section id="inicio" class="container">
+  <h2>Bienvenido</h2>
+  <p style="text-align:center;">Encuentra los mejores accesorios para tu celular: audífonos, baterías portátiles, bocinas, cargadores y cables.</p>
+</section>
+
+<section id="productos" class="container">
+
+<h2>Audífonos Bluetooth</h2>
+<div class="carousel">
+  <div class="producto">
+    <img src="https://i.postimg.cc/TLm8gH6j/31-bh-QHr-Aa-L.jpg" alt="Audífonos Bluetooth 1">
+    <h3>Audífonos Bluetooth 1</h3>
+    <p>Sonido estéreo de alta calidad, conexión inalámbrica estable y hasta 12 horas de batería.</p>
+    <a class="whatsapp-button" href="https://wa.me/525615864343?text=Hola!%20Estoy%20interesado%20en%20los%20Audífonos%20Bluetooth%201" target="_blank">Comprar por WhatsApp</a>
+  </div>
+  <div class="producto">
+    <img src="https://i.postimg.cc/d7hctVNx/31-CQao-Kyp-L.jpg" alt="Audífonos Bluetooth 2">
+    <h3>Audífonos Bluetooth 2</h3>
+    <p>Diseño ergonómico y resistente, perfectos para música y llamadas sin interrupciones.</p>
+    <a class="whatsapp-button" href="https://wa.me/525615864343?text=Hola!%20Estoy%20interesado%20en%20los%20Audífonos%20Bluetooth%202" target="_blank">Comprar por WhatsApp</a>
+  </div>
+  <div class="producto">
+    <img src="https://i.postimg.cc/pyTGw67s/descarga-2.jpg" alt="Audífonos Bluetooth 3">
+    <h3>Audífonos Bluetooth 3</h3>
+    <p>Compactos y ligeros, con micrófono incorporado para llamadas claras.</p>
+    <a class="whatsapp-button" href="https://wa.me/525615864343?text=Hola!%20Estoy%20interesado%20en%20los%20Audífonos%20Bluetooth%203" target="_blank">Comprar por WhatsApp</a>
+  </div>
+</div>
+
+<h2>Baterías Portátiles</h2>
+<div class="carousel">
+  <div class="producto">
+    <img src="https://i.postimg.cc/N5Qh24PT/61-IJMmn-EZv-L-SL1500.jpg" alt="Batería portátil 1">
+    <h3>Batería Portátil 1</h3>
+    <p>Carga rápida y segura para tu celular en cualquier lugar, diseño compacto y ligero.</p>
+    <a class="whatsapp-button" href="https://wa.me/525615864343?text=Hola!%20Estoy%20interesado%20en%20la%20Batería%20Portátil%201" target="_blank">Comprar por WhatsApp</a>
+  </div>
+  <div class="producto">
+    <img src="https://i.postimg.cc/PC3kjwyD/61u3-RJUDhu-L.jpg" alt="Batería portátil 2">
+    <h3>Batería Portátil 2</h3>
+    <p>Capacidad extendida para varios dispositivos, ideal para viajes y uso diario.</p>
+    <a class="whatsapp-button" href="https://wa.me/525615864343?text=Hola!%20Estoy%20interesado%20en%20la%20Batería%20Portátil%202" target="_blank">Comprar por WhatsApp</a>
+  </div>
+</div>
+
+<h2>Bocinas</h2>
+<div class="carousel">
+  <div class="producto">
+    <img src="https://i.postimg.cc/pyTGw67s/descarga-2.jpg" alt="Bocina 1">
+    <h3>Bocina 1</h3>
+    <p>Sonido potente, compacto y resistente al agua, perfecto para exteriores.</p>
+    <a class="whatsapp-button" href="https://wa.me/525615864343?text=Hola!%20Estoy%20interesado%20en%20la%20Bocina%201" target="_blank">Comprar por WhatsApp</a>
+  </div>
+  <div class="producto">
+    <img src="https://i.postimg.cc/N9NNy6y8/D-NQ-967532-MLA80719296689-112024-V.webp" alt="Bocina 2">
+    <h3>Bocina 2</h3>
+    <p>Alta fidelidad, conexión Bluetooth estable, batería de larga duración.</p>
+    <a class="whatsapp-button" href="https://wa.me/525615864343?text=Hola!%20Estoy%20interesado%20en%20la%20Bocina%202" target="_blank">Comprar por WhatsApp</a>
+  </div>
+</div>
+
+</section>
+
+<a href="https://wa.me/525615864343" target="_blank" class="whatsapp">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+</a>
+
+<footer>
+  <p>&copy; 2025 Tienda de Accesorios Celulares</p>
+</footer>
+
+<script>
+// Menú hamburguesa
+const toggle = document.getElementById('menu-toggle');
+const menu = document.getElementById('menu');
+toggle.addEventListener('click', () => {
+  menu.classList.toggle('show');
+});
+
+// Animación al hacer scroll
+const productos = document.querySelectorAll('.producto');
+window.addEventListener('scroll', () => {
+  productos.forEach(producto => {
+    const rect = producto.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 100){
+      producto.classList.add('visible');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
