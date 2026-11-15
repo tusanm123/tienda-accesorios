@@ -82,7 +82,7 @@
   <header>
     <div class="nav-wrap">
       <a class="logo" href="#inicio">NEBRO<span>.</span></a>
-      <button class="menu-button" id="menuToggle" aria-label="Abrir menú">☰</button>
+      <button class="menu-button" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainNav">☰</button>
       <nav id="mainNav">
         <a href="#inicio">Inicio</a><a href="#productos">Productos</a><a href="#nosotros">Nosotros</a><a href="#contacto">Contacto</a>
       </nav>
@@ -217,8 +217,21 @@
       document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x===b));
       renderProducts();
     });
-    document.getElementById("menuToggle").addEventListener("click",()=>document.getElementById("mainNav").classList.toggle("show"));
-    document.querySelectorAll("#mainNav a").forEach(a=>a.addEventListener("click",()=>document.getElementById("mainNav").classList.remove("show")));
+    const menuToggle=document.getElementById("menuToggle");
+    const mainNav=document.getElementById("mainNav");
+    function setMenu(open){
+      mainNav.classList.toggle("show",open);
+      menuToggle.setAttribute("aria-expanded",String(open));
+      menuToggle.setAttribute("aria-label",open?"Cerrar menú":"Abrir menú");
+      menuToggle.textContent=open?"✕":"☰";
+    }
+    menuToggle.addEventListener("click",()=>setMenu(!mainNav.classList.contains("show")));
+    mainNav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>setMenu(false)));
+    document.addEventListener("keydown",e=>{if(e.key==="Escape")setMenu(false);});
+    document.addEventListener("click",e=>{
+      if(window.innerWidth<=600 && !mainNav.contains(e.target) && !menuToggle.contains(e.target))setMenu(false);
+    });
+    window.addEventListener("resize",()=>{if(window.innerWidth>600)setMenu(false);});
     document.getElementById("year").textContent=new Date().getFullYear();
     renderProducts();renderCart();
   </script>
