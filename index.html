@@ -1,295 +1,80 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#111111">
-  <meta name="description" content="NEBRO Accesorios: fundas, cargadores, audífonos y accesorios para tu celular.">
-  <title>NEBRO ACCESORIOS | Tecnología para ti</title>
-  <style>
-    :root{--black:#111;--orange:#ff6b00;--cream:#f6f6f6;--muted:#777}
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#fff;color:#171717}
-    a{color:inherit;text-decoration:none}
-    button,input{font:inherit}
-    .topbar{background:#080808;color:#fff;text-align:center;padding:9px 12px;font-size:12px;letter-spacing:1px}
-    header{background:#111;color:#fff;position:sticky;top:0;z-index:20;box-shadow:0 3px 12px #0002}
-    .nav-wrap{max-width:1200px;margin:auto;padding:15px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-    .logo{font-size:27px;font-weight:900;letter-spacing:2px}.logo span{color:var(--orange)}
-    nav{display:flex;align-items:center;gap:24px;font-size:14px}
-    nav a:hover{color:var(--orange)}
-    .cart-button,.menu-button{border:1px solid #555;background:transparent;color:#fff;padding:10px 13px;border-radius:7px;cursor:pointer}
-    .cart-count{color:var(--orange);font-weight:bold}
-    .menu-button{display:none}
-    .hero{background:linear-gradient(110deg,#101010 0%,#242424 65%,#3a200f 100%);color:#fff;min-height:390px;display:flex;align-items:center}
-    .hero-inner{max-width:1200px;width:100%;margin:auto;padding:65px 24px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:30px}
-    .eyebrow{color:#ff9b54;font-size:12px;font-weight:bold;letter-spacing:3px;text-transform:uppercase}
-    .hero h1{font-size:clamp(38px,6vw,66px);line-height:1.02;margin:14px 0}
-    .hero h1 span{color:var(--orange)}
-    .hero p{color:#ddd;line-height:1.7;max-width:500px}
-    .primary-btn{display:inline-block;background:var(--orange);color:#fff;border:0;border-radius:6px;padding:14px 22px;font-weight:bold;margin-top:14px;cursor:pointer}
-    .primary-btn:hover{background:#e65f00}
-    .hero-art{font-size:clamp(90px,18vw,175px);text-align:center;filter:drop-shadow(0 12px 18px #0008)}
-    .benefits{max-width:1200px;margin:0 auto;padding:22px 20px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    .benefit{background:var(--cream);padding:16px;border-radius:8px;text-align:center;font-size:13px;font-weight:bold}
-    .section{max-width:1200px;margin:auto;padding:55px 20px}
-    .section-heading{text-align:center;margin-bottom:28px}
-    .section-heading small{color:var(--orange);font-weight:bold;letter-spacing:2px}
-    .section-heading h2{font-size:32px;margin:8px 0}
-    .section-heading p{color:var(--muted);margin:0}
-    .tools{display:flex;gap:12px;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap}
-    .search{flex:1;min-width:220px;max-width:420px;padding:12px 14px;border:1px solid #ddd;border-radius:7px}
-    .filters{display:flex;gap:8px;flex-wrap:wrap}
-    .filter{border:1px solid #ddd;background:#fff;padding:10px 13px;border-radius:20px;cursor:pointer;font-size:12px}
-    .filter.active,.filter:hover{background:#111;color:#fff;border-color:#111}
-    .grid-products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-    .product{border:1px solid #eee;border-radius:10px;overflow:hidden;background:#fff;transition:.2s;display:flex;flex-direction:column}
-    .product:hover{transform:translateY(-4px);box-shadow:0 10px 25px #00000012}
-    .product-image{height:190px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;overflow:hidden}
-    .product-image img{width:100%;height:100%;object-fit:contain;padding:12px}
-    .product-emoji{font-size:76px}
-    .product-info{padding:15px;display:flex;flex-direction:column;flex:1}
-    .category{font-size:10px;color:var(--orange);font-weight:bold;text-transform:uppercase;letter-spacing:1px}
-    .product h3{font-size:16px;margin:8px 0}
-    .product p{font-size:12px;color:var(--muted);line-height:1.5;margin:0 0 12px;flex:1}
-    .price{font-size:19px;font-weight:800;margin-bottom:12px}
-    .product-actions{display:flex;gap:7px}
-    .add-btn,.buy-btn{flex:1;border:0;border-radius:5px;padding:10px 7px;font-size:11px;font-weight:bold;cursor:pointer}
-    .add-btn{background:#111;color:#fff}.buy-btn{background:#fff0e6;color:#d65300}
-    .empty{grid-column:1/-1;text-align:center;padding:35px;color:var(--muted)}
-    .promo{background:#111;color:#fff;text-align:center;padding:42px 20px}
-    .promo h2{margin:0 0 10px;font-size:28px}.promo p{color:#ccc;margin:0}
-    footer{background:#080808;color:#ddd;padding:35px 20px;text-align:center}
-    footer .logo{margin-bottom:12px}footer p{font-size:12px;color:#aaa}
-    .float-wa{position:fixed;right:18px;bottom:18px;z-index:30;background:#20bd5a;color:#fff;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:27px;box-shadow:0 4px 14px #0003}
-    .cart-panel{position:fixed;right:0;top:0;height:100%;width:min(390px,100%);background:#fff;z-index:50;box-shadow:-8px 0 30px #0002;padding:22px;transform:translateX(110%);transition:.25s;display:flex;flex-direction:column}
-    .cart-panel.open{transform:translateX(0)}
-    .cart-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;padding-bottom:14px}
-    .close-cart{border:0;background:#eee;border-radius:50%;width:34px;height:34px;cursor:pointer}
-    .cart-items{overflow:auto;flex:1;padding:12px 0}
-    .cart-line{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #eee;padding:12px 0;font-size:13px}
-    .qty{display:flex;gap:8px;align-items:center;margin-top:7px}.qty button{border:1px solid #ddd;background:#fff;border-radius:4px;cursor:pointer}
-    .cart-total{font-size:18px;font-weight:bold;padding:15px 0}
-    .checkout{background:#20a957;color:#fff;border:0;border-radius:6px;padding:14px;font-weight:bold;cursor:pointer}
-    .overlay{display:none;position:fixed;inset:0;background:#0007;z-index:40}.overlay.show{display:block}
-    @media(max-width:850px){.grid-products{grid-template-columns:repeat(2,1fr)}.hero-inner{grid-template-columns:1fr .65fr}.hero-art{font-size:110px}}
-    @media(max-width:600px){.nav-wrap{padding:13px 15px}.logo{font-size:23px}nav{display:none;position:absolute;top:58px;left:0;right:0;background:#111;padding:18px;flex-direction:column;align-items:flex-start}nav.show{display:flex}.menu-button{display:block}.hero-inner{grid-template-columns:1fr;padding:48px 22px}.hero-art{display:none}.hero h1{font-size:43px}.benefits{grid-template-columns:1fr;padding:15px}.section{padding:42px 14px}.grid-products{gap:10px}.product-image{height:145px}.product-info{padding:11px}.product h3{font-size:14px}.product-actions{flex-direction:column}.section-heading h2{font-size:27px}}
-
-    /* Acabado visual NEBRO */
-    :root{--orange:#ff6b00;--black:#101014;--cream:#fff7f1}
-    body{background:#fff;color:#171717}
-    .topbar{background:linear-gradient(90deg,#ff6b00,#ff8a00);font-weight:800;color:#171717}
-    header{background:rgba(12,12,15,.97);backdrop-filter:blur(12px)}
-    .nav-wrap{max-width:1280px;padding-top:17px;padding-bottom:17px}
-    nav a{font-weight:700;letter-spacing:.2px;transition:color .2s}
-    nav a:hover,nav a:focus-visible{color:#ff8a35}
-    .menu-button,.cart-button{border-radius:12px;border-color:#555;transition:.2s}
-    .menu-button:hover,.cart-button:hover{border-color:var(--orange);color:#ff9a55}
-    .hero{min-height:470px;background:radial-gradient(circle at 80% 30%,#70330f 0,#30201a 27%,#111116 68%)}
-    .hero-inner{max-width:1280px}
-    .eyebrow{display:inline-block;background:#ff6b0022;border:1px solid #ff8a3566;padding:9px 13px;border-radius:30px}
-    .hero h1{letter-spacing:-2px}
-    .hero p{font-size:16px}
-    .hero-art{background:linear-gradient(145deg,#ffffff18,#ff6b0022);border:1px solid #ffffff22;border-radius:34px;padding:34px;box-shadow:0 25px 60px #0006}
-    .primary-btn{border-radius:30px;box-shadow:0 8px 24px #ff6b0055;transition:transform .2s,background .2s}
-    .primary-btn:hover{transform:translateY(-2px)}
-    .benefit{border:1px solid #f1e4dc;background:linear-gradient(145deg,#fff,#fff7f1);border-radius:14px;padding:20px}
-    .section{max-width:1280px}
-    .section-heading h2{font-size:clamp(28px,4vw,40px);letter-spacing:-1px}
-    .section-heading small{display:inline-block;background:#fff0e6;padding:7px 12px;border-radius:20px}
-    .search{border-radius:25px;padding:13px 18px}
-    .filter{font-weight:700;transition:.2s}
-    .filter.active,.filter:hover{background:var(--orange);border-color:var(--orange)}
-    .grid-products{gap:22px}
-    .product{border:1px solid #eee5df;border-radius:17px;box-shadow:0 5px 20px #21170f08}
-    .product:hover{box-shadow:0 16px 35px #21170f18}
-    .product-image{height:220px;background:linear-gradient(145deg,#fff8f3,#f1f1f1)}
-    .product-image img{transition:transform .35s}
-    .product:hover .product-image img{transform:scale(1.05)}
-    .product-info{padding:18px}
-    .category{display:inline-block;background:#fff0e6;padding:6px 9px;border-radius:20px;width:max-content}
-    .product h3{font-size:17px}
-    .price{color:#e65f00}
-    .add-btn,.buy-btn{border-radius:20px;padding:12px 8px;transition:.2s}
-    .add-btn:hover{background:var(--orange)}
-    .buy-btn:hover{background:#ffe1cc}
-    .promo{background:radial-gradient(circle at 50% 0,#4a2a1a,#111116 65%);padding:58px 20px}
-    footer{border-top:4px solid var(--orange)}
-    .float-wa{width:62px;height:62px;background:#25D366;font-size:0;box-shadow:0 7px 24px #0004;transition:transform .2s}
-    .float-wa:hover{transform:scale(1.08)}
-    .float-wa svg{width:34px;height:34px;display:block}
-    .cart-panel{border-radius:18px 0 0 18px}
-    @media(max-width:600px){
-      .hero{min-height:0}
-      .hero-inner{padding:48px 22px}
-      .hero h1{letter-spacing:-1px}
-      .hero-art{display:none}
-      .benefits{gap:9px}
-      .benefit{padding:14px;border-radius:12px}
-      .product-image{height:155px}
-      .product-info{padding:12px}
-      .float-wa{width:58px;height:58px}
-    }
-  </style>
-</head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111111">
+<meta name="description" content="NEBRO Accesorios: accesorios para celular. Consulta por WhatsApp.">
+<title>NEBRO Accesorios | Accesorios para tu celular</title>
+<style>
+:root{--orange:#ff6b00;--dark:#111116;--cream:#fff6ef;--muted:#777}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#181818}
+a{text-decoration:none;color:inherit}.top{background:var(--orange);text-align:center;padding:9px;font-size:12px;font-weight:800;letter-spacing:1px}
+header{position:sticky;top:0;z-index:10;background:#111116;color:#fff;box-shadow:0 4px 18px #0002}
+.nav{max-width:1200px;margin:auto;padding:15px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-size:27px;font-weight:900;letter-spacing:2px}.logo span{color:var(--orange)}
+nav{display:flex;gap:25px;font-size:14px;font-weight:bold}nav a:hover{color:#ff9148}
+.menu{display:none;background:transparent;color:white;border:1px solid #666;border-radius:8px;padding:9px 12px;font-size:20px}
+.hero{background:radial-gradient(circle at 80% 30%,#73340e,#30201a 30%,#111116 72%);color:white}
+.hero-in{max-width:1200px;margin:auto;padding:76px 22px;display:grid;grid-template-columns:1fr .7fr;align-items:center;gap:30px}
+.tag{display:inline-block;background:#ff6b0025;border:1px solid #ff8a3566;color:#ffad78;padding:9px 14px;border-radius:30px;font-size:12px;font-weight:bold;letter-spacing:2px}
+h1{font-size:clamp(40px,6vw,68px);line-height:1.02;letter-spacing:-2px;margin:18px 0}
+h1 span{color:var(--orange)}.hero p{color:#ddd;line-height:1.7;max-width:520px}
+.btn{display:inline-block;background:var(--orange);color:#fff;padding:14px 23px;border-radius:30px;font-weight:bold;margin-top:13px}
+.hero-icon{font-size:150px;text-align:center;background:#ffffff12;border:1px solid #ffffff22;border-radius:32px;padding:25px}
+.benefits{max-width:1200px;margin:auto;padding:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.benefit{background:var(--cream);border:1px solid #f1e4dc;border-radius:13px;text-align:center;padding:17px;font-weight:bold;font-size:13px}
+section.catalog{max-width:1200px;margin:auto;padding:55px 20px}
+.heading{text-align:center;margin-bottom:28px}.heading small{background:#fff0e6;color:#e65f00;padding:7px 12px;border-radius:20px;font-weight:bold;letter-spacing:1px}
+.heading h2{font-size:clamp(28px,4vw,40px);margin:14px 0 8px}.heading p{color:var(--muted);margin:0}
+.tools{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+#search{flex:1;min-width:220px;max-width:400px;border:1px solid #ddd;border-radius:25px;padding:13px 17px;font-size:14px}
+.filters{display:flex;gap:8px;flex-wrap:wrap}.filter{border:1px solid #ddd;background:#fff;border-radius:25px;padding:10px 14px;cursor:pointer;font-weight:bold;font-size:12px}
+.filter.active,.filter:hover{background:#111116;color:white;border-color:#111116}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{border:1px solid #eee5df;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 5px 18px #21170f08;transition:.2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 14px 30px #21170f18}
+.photo{height:205px;background:linear-gradient(145deg,#fff8f3,#f0efed);display:flex;align-items:center;justify-content:center;color:#999;flex-direction:column;gap:8px;text-align:center;padding:12px}
+.photo .emoji{font-size:65px}.photo a{color:#d65300;text-decoration:underline;font-size:12px;font-weight:bold}
+.info{padding:16px;display:flex;flex-direction:column;flex:1}.number{font-size:10px;color:#e65f00;font-weight:bold;letter-spacing:1px}
+.info h3{font-size:16px;margin:8px 0}.info p{font-size:12px;line-height:1.5;color:#777;flex:1}
+.whatsapp{display:block;text-align:center;background:#20b95a;color:white;padding:11px;border-radius:22px;font-weight:bold;font-size:12px}
+.promo{background:radial-gradient(circle at 50% 0,#4a2a1a,#111116 65%);color:white;text-align:center;padding:50px 20px}.promo p{color:#ccc}
+footer{background:#080808;color:#ddd;text-align:center;padding:35px 20px;border-top:4px solid var(--orange)}footer p{color:#aaa;font-size:12px}
+.float-wa{position:fixed;right:18px;bottom:18px;z-index:20;background:#25D366;color:white;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;box-shadow:0 6px 22px #0004}
+.float-wa svg{width:34px;height:34px;fill:white}
+@media(max-width:850px){.products{grid-template-columns:repeat(2,1fr)}.hero-in{grid-template-columns:1fr .5fr}.hero-icon{font-size:100px}}
+@media(max-width:600px){.nav{padding:13px 15px}.logo{font-size:23px}.menu{display:block}nav{display:none;position:absolute;top:58px;left:0;right:0;background:#111116;padding:20px;flex-direction:column;gap:20px}nav.open{display:flex}.hero-in{display:block;padding:52px 22px}.hero-icon{display:none}h1{font-size:44px}.benefits{grid-template-columns:1fr;padding:14px}.benefit{padding:14px}.catalog{padding:42px 14px!important}.products{gap:10px}.photo{height:150px}.info{padding:12px}.info h3{font-size:14px}.filters{gap:6px}.filter{padding:9px 11px}}
+</style></head>
 <body>
-  <div class="topbar">NEBRO ACCESORIOS · TODO PARA TU CELULAR</div>
-  <header>
-    <div class="nav-wrap">
-      <a class="logo" href="#inicio">NEBRO<span>.</span></a>
-      <button class="menu-button" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainNav">☰</button>
-      <nav id="mainNav">
-        <a href="#inicio">Inicio</a><a href="#productos">Productos</a><a href="#nosotros">Nosotros</a><a href="#contacto">Contacto</a>
-      </nav>
-      <button class="cart-button" id="openCart">🛒 Carrito <span class="cart-count" id="cartCount">0</span></button>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero" id="inicio">
-      <div class="hero-inner">
-        <div>
-          <div class="eyebrow">Tecnología · Estilo · Conectividad</div>
-          <h1>Equipa tu celular.<br><span>Eleva tu estilo.</span></h1>
-          <p>Descubre accesorios que combinan diseño, funcionalidad y tecnología para acompañarte todos los días.</p>
-          <a class="primary-btn" href="#productos">EXPLORAR PRODUCTOS</a>
-        </div>
-        <div class="hero-art" aria-hidden="true">📱</div>
-      </div>
-    </section>
-
-    <div class="benefits">
-      <div class="benefit">🚚 Atención y pedidos por WhatsApp</div>
-      <div class="benefit">🎧 Accesorios para tu día a día</div>
-      <div class="benefit">⭐ Encuentra tu estilo NEBRO</div>
-    </div>
-
-    <section class="section" id="productos">
-      <div class="section-heading"><small>CATÁLOGO NEBRO</small><h2>Encuentra tu accesorio</h2><p>Explora nuestros artículos y consulta disponibilidad.</p></div>
-      <div class="tools">
-        <input class="search" id="searchInput" type="search" placeholder="Buscar un producto..." aria-label="Buscar productos">
-        <div class="filters" id="filters">
-          <button class="filter active" data-category="Todos">Todos</button>
-          <button class="filter" data-category="Audífonos">Audífonos</button>
-          <button class="filter" data-category="Cargadores">Cargadores</button>
-          <button class="filter" data-category="Fundas">Fundas</button>
-          <button class="filter" data-category="Baterías">Baterías</button>
-          <button class="filter" data-category="Bocinas">Bocinas</button>
-        </div>
-      </div>
-      <div class="grid-products" id="productGrid"></div>
-    </section>
-
-    <section class="promo" id="nosotros">
-      <h2>Tu celular, tu estilo, NEBRO.</h2>
-      <p>Estamos para ayudarte a encontrar el accesorio que necesitas.</p>
-    </section>
-  </main>
-
-  <footer id="contacto">
-    <div class="logo">NEBRO<span>.</span></div>
-    <p>Accesorios para celulares y tecnología.</p>
-    <p>Haz tu pedido o consulta disponibilidad por WhatsApp.</p>
-    <p>© <span id="year"></span> NEBRO ACCESORIOS. Todos los derechos reservados.</p>
-  </footer>
-
-  <a class="float-wa" href="https://wa.me/525616864343?text=Hola%20NEBRO%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20productos." target="_blank" rel="noopener" aria-label="Contactar por WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 .8A15 15 0 0 0 3.1 23.5L1.2 31l7.7-2A15 15 0 1 0 16 .8Zm0 27.4a12.3 12.3 0 0 1-6.3-1.7l-.5-.3-4.6 1.2 1.2-4.5-.3-.5A12.3 12.3 0 1 1 16 28.2Zm6.8-9.2c-.4-.2-2.2-1.1-2.6-1.2-.3-.1-.6-.2-.8.2-.3.4-1 1.2-1.2 1.4-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3-1.9-1.1-1-1.9-2.2-2.1-2.6-.2-.4 0-.6.2-.8l.6-.7c.2-.2.3-.4.4-.6.1-.2 0-.5 0-.7l-1.2-2.8c-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.7.1-1 .5-.4.4-1.3 1.3-1.3 3.1s1.3 3.5 1.5 3.8c.2.2 2.6 4 6.3 5.6.9.4 1.6.6 2.1.7.9.3 1.7.2 2.3.1.7-.1 2.2-.9 2.5-1.8.3-.9.3-1.6.2-1.8-.1-.2-.3-.3-.7-.5Z"/></svg></a>
-
-  <div class="overlay" id="overlay"></div>
-  <aside class="cart-panel" id="cartPanel" aria-label="Carrito de compras">
-    <div class="cart-head"><h2>Tu carrito</h2><button class="close-cart" id="closeCart" aria-label="Cerrar carrito">✕</button></div>
-    <div class="cart-items" id="cartItems"></div>
-    <div class="cart-total" id="cartTotal">Total: $0 MXN</div>
-    <button class="checkout" id="checkout">Enviar pedido por WhatsApp</button>
-  </aside>
-
-  <script>
-    // Edita aquí los nombres, precios, descripciones e imágenes de tus productos.
-    // Los precios de ejemplo deben actualizarse antes de publicar la tienda.
-    const products = [
-      {id:1,name:"Audífonos Bluetooth",category:"Audífonos",price:299,emoji:"🎧",description:"Audífonos inalámbricos para música y llamadas.",image:""},
-      {id:2,name:"Audífonos deportivos",category:"Audífonos",price:349,emoji:"🎵",description:"Diseño cómodo para acompañarte durante el día.",image:""},
-      {id:3,name:"Cargador USB",category:"Cargadores",price:199,emoji:"🔌",description:"Cargador compacto para uso diario.",image:""},
-      {id:4,name:"Cable de carga",category:"Cargadores",price:99,emoji:"🔋",description:"Cable práctico para cargar tus dispositivos.",image:""},
-      {id:5,name:"Funda para celular",category:"Fundas",price:149,emoji:"📱",description:"Protección y estilo para tu smartphone.",image:""},
-      {id:6,name:"Mica de cristal templado",category:"Fundas",price:89,emoji:"🛡️",description:"Protección para la pantalla de tu celular.",image:""},
-      {id:7,name:"Batería portátil",category:"Baterías",price:399,emoji:"🔋",description:"Energía adicional cuando estás fuera de casa.",image:""},
-      {id:8,name:"Bocina Bluetooth",category:"Bocinas",price:449,emoji:"🔊",description:"Lleva tu música a donde quieras.",image:""}
-    ];
-    const money = n => new Intl.NumberFormat("es-MX",{style:"currency",currency:"MXN",maximumFractionDigits:0}).format(n);
-    let category = "Todos";
-    let cart = [];
-    const grid = document.getElementById("productGrid");
-
-    function renderProducts(){
-      const term = document.getElementById("searchInput").value.trim().toLowerCase();
-      const visible = products.filter(p => (category==="Todos" || p.category===category) && (p.name+" "+p.description+" "+p.category).toLowerCase().includes(term));
-      grid.innerHTML = visible.length ? visible.map(p => `
-        <article class="product">
-          <div class="product-image">${p.image ? `<img src="${p.image}" alt="${p.name}" loading="lazy">` : `<span class="product-emoji">${p.emoji}</span>`}</div>
-          <div class="product-info">
-            <span class="category">${p.category}</span><h3>${p.name}</h3><p>${p.description}</p>
-            <div class="price">${money(p.price)}</div>
-            <div class="product-actions"><button class="add-btn" onclick="addToCart(${p.id})">Agregar al carrito</button><button class="buy-btn" onclick="buyNow(${p.id})">Consultar</button></div>
-          </div>
-        </article>`).join("") : '<div class="empty">No encontramos productos con esa búsqueda.</div>';
-    }
-    function addToCart(id){
-      const item=cart.find(x=>x.id===id);
-      if(item)item.qty++;else cart.push({id,qty:1});
-      renderCart();
-    }
-    function changeQty(id,delta){
-      const item=cart.find(x=>x.id===id);if(!item)return;
-      item.qty+=delta;if(item.qty<=0)cart=cart.filter(x=>x.id!==id);
-      renderCart();
-    }
-    function renderCart(){
-      const count=cart.reduce((s,x)=>s+x.qty,0);
-      document.getElementById("cartCount").textContent=count;
-      const lines=cart.map(x=>{const p=products.find(y=>y.id===x.id);return `<div class="cart-line"><div><strong>${p.name}</strong><div>${money(p.price)} c/u</div><div class="qty"><button onclick="changeQty(${p.id},-1)">−</button><span>${x.qty}</span><button onclick="changeQty(${p.id},1)">+</button></div></div><strong>${money(p.price*x.qty)}</strong></div>`;}).join("");
-      document.getElementById("cartItems").innerHTML=lines||'<p>Tu carrito está vacío. Agrega algún producto para comenzar.</p>';
-      const total=cart.reduce((s,x)=>s+products.find(p=>p.id===x.id).price*x.qty,0);
-      document.getElementById("cartTotal").textContent="Total: "+money(total)+" MXN";
-    }
-    function openCart(){document.getElementById("cartPanel").classList.add("open");document.getElementById("overlay").classList.add("show");}
-    function closeCart(){document.getElementById("cartPanel").classList.remove("open");document.getElementById("overlay").classList.remove("show");}
-    function buyNow(id){const p=products.find(x=>x.id===id);const msg="Hola NEBRO, quiero consultar disponibilidad de: "+p.name+" ("+money(p.price)+").";window.open("https://wa.me/525616864343?text="+encodeURIComponent(msg),"_blank");}
-    document.getElementById("checkout").addEventListener("click",()=>{
-      if(!cart.length){alert("Tu carrito está vacío.");return;}
-      const rows=cart.map(x=>{const p=products.find(y=>y.id===x.id);return "• "+p.name+" x"+x.qty+" - "+money(p.price*x.qty);});
-      const total=cart.reduce((s,x)=>s+products.find(p=>p.id===x.id).price*x.qty,0);
-      const msg="Hola NEBRO, quiero hacer este pedido:\n"+rows.join("\n")+"\nTotal estimado: "+money(total)+" MXN\n¿Me pueden confirmar disponibilidad y entrega?";
-      window.open("https://wa.me/525616864343?text="+encodeURIComponent(msg),"_blank");
-    });
-    document.getElementById("openCart").addEventListener("click",openCart);
-    document.getElementById("closeCart").addEventListener("click",closeCart);
-    document.getElementById("overlay").addEventListener("click",closeCart);
-    document.getElementById("searchInput").addEventListener("input",renderProducts);
-    document.getElementById("filters").addEventListener("click",e=>{
-      const b=e.target.closest("button[data-category]");if(!b)return;
-      category=b.dataset.category;
-      document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x===b));
-      renderProducts();
-    });
-    const menuToggle=document.getElementById("menuToggle");
-    const mainNav=document.getElementById("mainNav");
-    function setMenu(open){
-      mainNav.classList.toggle("show",open);
-      menuToggle.setAttribute("aria-expanded",String(open));
-      menuToggle.setAttribute("aria-label",open?"Cerrar menú":"Abrir menú");
-      menuToggle.textContent=open?"✕":"☰";
-    }
-    menuToggle.addEventListener("click",()=>setMenu(!mainNav.classList.contains("show")));
-    mainNav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>setMenu(false)));
-    document.addEventListener("keydown",e=>{if(e.key==="Escape")setMenu(false);});
-    document.addEventListener("click",e=>{
-      if(window.innerWidth<=600 && !mainNav.contains(e.target) && !menuToggle.contains(e.target))setMenu(false);
-    });
-    window.addEventListener("resize",()=>{if(window.innerWidth>600)setMenu(false);});
-    document.getElementById("year").textContent=new Date().getFullYear();
-    renderProducts();renderCart();
-  </script>
-</body>
-</html>
+<div class="top">NEBRO ACCESORIOS · TODO PARA TU CELULAR</div>
+<header><div class="nav">
+<a class="logo" href="#inicio">NEBRO<span>.</span></a>
+<button class="menu" id="menuBtn" aria-label="Abrir menú" aria-expanded="false">☰</button>
+<nav id="nav"><a href="#inicio">Inicio</a><a href="#productos">Productos</a><a href="#nosotros">Nosotros</a><a href="#contacto">Contacto</a></nav>
+</div></header>
+<main>
+<section class="hero" id="inicio"><div class="hero-in"><div><span class="tag">TECNOLOGÍA · ESTILO · CONECTIVIDAD</span><h1>Equipa tu celular.<br><span>Eleva tu estilo.</span></h1><p>Descubre accesorios que combinan diseño, funcionalidad y tecnología para acompañarte todos los días.</p><a class="btn" href="#productos">VER CATÁLOGO</a></div><div class="hero-icon" aria-hidden="true">📱</div></div></section>
+<div class="benefits"><div class="benefit">📲 Pedidos y consultas por WhatsApp</div><div class="benefit">🎧 Accesorios para tu día a día</div><div class="benefit">⭐ Encuentra tu estilo NEBRO</div></div>
+<section class="catalog" id="productos"><div class="heading"><small>CATÁLOGO NEBRO</small><h2>Encuentra tu accesorio</h2><p>Explora las fotografías y consulta disponibilidad directamente con nosotros.</p></div>
+<div class="tools"><input id="search" type="search" placeholder="Buscar producto..." aria-label="Buscar producto"><div class="filters" id="filters"><button class="filter active" data-cat="Todos">Todos</button><button class="filter" data-cat="Audífonos">Audífonos</button><button class="filter" data-cat="Cargadores">Cargadores</button><button class="filter" data-cat="Fundas">Fundas</button><button class="filter" data-cat="Otros">Otros</button></div></div>
+<div class="products" id="products"></div></section>
+<section class="promo" id="nosotros"><h2>Tu celular, tu estilo, NEBRO.</h2><p>Estamos para ayudarte a encontrar el accesorio que necesitas.</p></section>
+</main>
+<footer id="contacto"><div class="logo">NEBRO<span>.</span></div><p>Accesorios para celulares y tecnología.</p><p>Contáctanos por WhatsApp: 561 686 4343</p><p>© <span id="year"></span> NEBRO ACCESORIOS. Todos los derechos reservados.</p></footer>
+<a class="float-wa" href="https://wa.me/525616864343?text=Hola%20NEBRO%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20productos." target="_blank" rel="noopener" aria-label="Contactar por WhatsApp"><svg viewBox="0 0 32 32"><path d="M16 .8A15 15 0 0 0 3.1 23.5L1.2 31l7.7-2A15 15 0 1 0 16 .8Zm0 27.4a12.3 12.3 0 0 1-6.3-1.7l-.5-.3-4.6 1.2 1.2-4.5-.3-.5A12.3 12.3 0 1 1 16 28.2Zm6.8-9.2c-.4-.2-2.2-1.1-2.6-1.2-.3-.1-.6-.2-.8.2-.3.4-1 1.2-1.2 1.4-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3-1.9-1.1-1-1.9-2.2-2.1-2.6-.2-.4 0-.6.2-.8l.6-.7c.2-.2.3-.4.4-.6.1-.2 0-.5 0-.7l-1.2-2.8c-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.7.1-1 .5-.4.4-1.3 1.3-1.3 3.1s1.3 3.5 1.5 3.8c.2.2 2.6 4 6.3 5.6.9.4 1.6.6 2.1.7.9.3 1.7.2 2.3.1.7-.1 2.2-.9 2.5-1.8.3-.9.3-1.6.2-1.8-.1-.2-.3-.3-.7-.5Z"/></svg></a>
+<script>
+const photoPages=["https://ibb.co/H1vSC5y","https://ibb.co/7tvq8LNj","https://ibb.co/1fH0jB2w","https://ibb.co/bM67YPsS","https://ibb.co/SDWhsxv4","https://ibb.co/8LVQk3g6","https://ibb.co/LhY1R44b","https://ibb.co/qF9TPwWp","https://ibb.co/Txj5r8d7","https://ibb.co/Kj153ctT","https://ibb.co/dsdWJ0PP","https://ibb.co/fGLvTmPp","https://ibb.co/QjxM6djm","https://ibb.co/kPvxDFp","https://ibb.co/fG1H019w","https://ibb.co/mVW48FV3","https://ibb.co/xKL1jMw2","https://ibb.co/kVXdRvCm","https://ibb.co/d46nKGq6","https://ibb.co/sv92qJ3S","https://ibb.co/dJm50WVC","https://ibb.co/5g2cYBzQ","https://ibb.co/ycxNpX6K","https://ibb.co/LXPZ1Lmh","https://ibb.co/bRP1wJ0f","https://ibb.co/TjvZfCm","https://ibb.co/8g9LW1xK","https://ibb.co/jkGYSQHZ","https://ibb.co/fzkDCfZx","https://ibb.co/8gvNkpvf","https://ibb.co/b5V9WHSL","https://ibb.co/XZ60gVHV","https://ibb.co/DmbpMkr","https://ibb.co/nqJ9YF6v","https://ibb.co/YF75CXsf","https://ibb.co/jv3QWpnK","https://ibb.co/B56mGZxJ","https://ibb.co/k2155k0S","https://ibb.co/Fb0wwq4n","https://ibb.co/m5dScfyv","https://ibb.co/R5pwQ9L","https://ibb.co/XkyJ8R1h","https://ibb.co/F4D9VYmY"];
+const wa="https://wa.me/525616864343?text=";
+const products=photoPages.map((url,i)=>({id:i+1,url,category:i<10?"Fundas":i<20?"Audífonos":"Otros",name:"Accesorio "+String(i+1).padStart(2,"0")}));
+let active="Todos";
+function draw(){const q=document.getElementById("search").value.trim().toLowerCase();const list=products.filter(p=>(active==="Todos"||p.category===active)&&(p.name+" "+p.category).toLowerCase().includes(q));document.getElementById("products").innerHTML=list.map(p=>'<article class="card"><div class="photo"><span class="emoji">📷</span><strong>Fotografía '+String(p.id).padStart(2,"0")+'</strong><a href="'+p.url+'" target="_blank" rel="noopener">Abrir foto original</a></div><div class="info"><span class="number">NEBRO · '+p.category.toUpperCase()+'</span><h3>'+p.name+'</h3><p>Consulta detalles, modelos y disponibilidad de este accesorio.</p><a class="whatsapp" target="_blank" rel="noopener" href="'+wa+encodeURIComponent("Hola NEBRO, quiero información del "+p.name+". Esta es su foto: "+p.url)+'">Consultar por WhatsApp</a></div></article>').join("")||'<p>No se encontraron productos.</p>'}
+document.getElementById("search").addEventListener("input",draw);
+document.getElementById("filters").addEventListener("click",e=>{const b=e.target.closest("[data-cat]");if(!b)return;active=b.dataset.cat;document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x===b));draw()});
+const menu=document.getElementById("menuBtn"),nav=document.getElementById("nav");
+function closeMenu(){nav.classList.remove("open");menu.textContent="☰";menu.setAttribute("aria-expanded","false");menu.setAttribute("aria-label","Abrir menú")}
+menu.addEventListener("click",()=>{const open=nav.classList.toggle("open");menu.textContent=open?"✕":"☰";menu.setAttribute("aria-expanded",String(open));menu.setAttribute("aria-label",open?"Cerrar menú":"Abrir menú")});
+nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",closeMenu));
+document.addEventListener("click",e=>{if(!nav.contains(e.target)&&!menu.contains(e.target))closeMenu()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeMenu()});
+document.getElementById("year").textContent=new Date().getFullYear();draw();
+</script></body></html>
